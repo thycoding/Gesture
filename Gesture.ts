@@ -174,7 +174,7 @@ namespace gesture {
      * get Gesture mode
      * 
      */
-    //% blockId=grove_getgesture block="get gesture model"
+    //% blockId=grove_getgesture block="get gesture mode"
     export function getGestureModel(): number {
         return paj7620.read();
     }
