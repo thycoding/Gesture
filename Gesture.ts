@@ -30,7 +30,7 @@ const initRegisterArray: number[] = [
 ];
 
 /**
- * Gestures
+ * Grove Gestures
  */
 enum GroveGesture {
     //% block=None
@@ -54,6 +54,7 @@ enum GroveGesture {
     //% block=Wave
     Wave = 9
 }
+
 /**
  * Functions to operate Gesture.
  */
@@ -89,24 +90,22 @@ namespace gesture {
                     this.paj7620WriteReg(initRegisterArray[i], initRegisterArray[i + 1]);
                 }
             }
+
             this.paj7620SelectBank(0);
         }
 
-        /**
-         * Create a new driver for Gesture
+    /**
+         * Create a new driver of Grove - Gesture
          */
-        //% blockId=grove_gesture_init block="%strip|initiate Gesture"
-        //% advanced=true
         init() {
             this.paj7620Init();
             basic.pause(200);
         }
 
         /**
-         * Detect and recognize the Gestures
+         * Detect and recognize the gestures from Grove - Gesture
          */
-        //% blockId=grove_gesture_read block="%strip|get gesture"
-        //% advanced=true
+
         read(): number {
             let data = 0, result = 0;
 
@@ -114,43 +113,42 @@ namespace gesture {
             switch (data) {
                 case 0x01:
                     result = GroveGesture.Right;
-                    break;
+                break;
 
                 case 0x02:
                     result = GroveGesture.Left;
-                    break;
+                break;
 
                 case 0x04:
                     result = GroveGesture.Up;
-                    break;
+                break;
 
                 case 0x08:
                     result = GroveGesture.Down;
-                    break;
+                break;
 
                 case 0x10:
                     result = GroveGesture.Forward;
-                    break;
+                break;
 
                 case 0x20:
                     result = GroveGesture.Backward;
-                    break;
+                break;
 
                 case 0x40:
                     result = GroveGesture.Clockwise;
-                    break;
+                break;
 
                 case 0x80:
                     result = GroveGesture.Anticlockwise;
-                    break;
+                break;
 
                 default:
                     data = this.paj7620ReadReg(0x44);
                     if (data == 0x01)
                         result = GroveGesture.Wave;
-                    break;
+                break;
             }
-
             return result;
         }
     }
@@ -189,7 +187,7 @@ namespace gesture {
         control.onEvent(gestureEventId, gesture, handler);
         paj7620.init();
         control.inBackground(() => {
-            while (true) {
+            while(true) {
                 const gesture = paj7620.read();
                 if (gesture != lastGesture) {
                     lastGesture = gesture;
