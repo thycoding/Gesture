@@ -169,13 +169,14 @@ namespace gesture {
     }
 
     /**
-     * get Gesture mode
+	 * This Mode is DISABLED
+     * get Gesture mode 
      * 
      */
-    //% blockId=grove_getgesture block="get gesture mode"
-    export function getGestureModel(): number {
-        return paj7620.read();
-    }
+ //   //% blockId=grove_getgesture block="get gesture mode"
+ //   export function getGestureModel(): number {
+ //       return paj7620.read();
+ //   }
 
     /**
      * Do something when a gesture is detected by Grove - Gesture
