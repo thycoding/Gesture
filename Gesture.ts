@@ -51,8 +51,6 @@ enum GroveGesture {
     Clockwise = 7,
     //% block=Anticlockwise
     Anticlockwise = 8,
-    //% block=Wave
-    Wave = 9
 }
 
 /**
@@ -141,12 +139,6 @@ namespace gesture {
 
                 case 0x80:
                     result = GroveGesture.Anticlockwise;
-                break;
-
-                default:
-                    data = this.paj7620ReadReg(0x44);
-                    if (data == 0x01)
-                        result = GroveGesture.Wave;
                 break;
             }
             return result;
